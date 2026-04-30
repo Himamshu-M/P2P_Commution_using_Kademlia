@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kademlia P2P — Node Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header id="header">
+    <div class="header-logo">KAD<span>/</span>P2P</div>
+    <div id="node-id-display" title="Click to copy your node ID">Loading…</div>
+    <div class="header-spacer"></div>
+    <div id="status-dot" class="status-dot" title="Signaling server status"></div>
+  </header>
+
+  <!-- ── Sidebar ────────────────────────────────────────────── -->
+  <aside id="sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">
+        Peers
+        <span id="peer-count" class="peer-count-badge" style="margin-left:6px">0</span>
+      </div>
+      <ul id="peer-list"></ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">DHT Stats</div>
+      <div class="dht-stat">
+        <span>Known nodes</span>
+        <span class="dht-stat-val" id="dht-nodes">—</span>
+      </div>
+      <div class="dht-stat">
+        <span>Filled buckets</span>
+        <span class="dht-stat-val" id="dht-buckets">—</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── Main Chat Panel ────────────────────────────────────── -->
+  <main id="main">
+
+    <div id="chat-header">
+      <div id="chat-target">No peers connected yet</div>
+    </div>
+
+    <div id="messages">
+      <div id="empty-state">
+        <div class="empty-icon">⬡</div>
+        <p>Open this page in another tab or device,<br>then start chatting peer-to-peer.</p>
+      </div>
+    </div>
+
+    <div id="typing-indicator"></div>
+
+    <div id="input-area">
+      <textarea
+        id="message-input"
+        placeholder="Type a message… (Enter to send, Shift+Enter for newline)"
+        rows="1"
+      ></textarea>
+      <button id="file-btn" class="btn btn-file" title="Send a file">📎</button>
+      <button id="send-btn" class="btn btn-send">Send</button>
+      <input type="file" id="file-input">
+    </div>
+
+  </main>
+
+</div><!-- #app -->
+
+<!-- ── Toasts ─────────────────────────────────────────────── -->
+<div id="toast-container"></div>
+
+<!-- ── Scripts (load order matters) ──────────────────────── -->
+<script src="peer-connection.js"></script>
+<script src="data-channel.js"></script>
+<script src="peer-discovery.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
